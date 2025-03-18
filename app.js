@@ -7,7 +7,7 @@ function agregarAmigo() {
     let nombreAmigo = inputAmigo.value;  
     
     if(!nombreAmigo) {
-        alert("Debes ingresar un nombre de amigo");
+        alert("Ingresa nombre de un amigo(a)");
         return;
     }          
     amigo.push(nombreAmigo);
