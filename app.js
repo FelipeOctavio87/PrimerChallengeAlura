@@ -1,42 +1,47 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
-let amigo = []
+let amigo = [];
 
 function agregarAmigo() {
-
     let inputAmigo = document.getElementById("amigo");
-    let nombreAmigo = inputAmigo.value;  
-    
-    if(!nombreAmigo) {
-        alert("Ingresa nombre de un amigo(a)");
+    let nombreAmigo = inputAmigo.value.trim();  
+
+    if (!nombreAmigo) {
+        alert("Ingresa el nombre de un amigo(a)");
         return;
-    }          
+    }
+
+    if (amigo.includes(nombreAmigo)) {
+        alert("Los nombres no pueden repetirse, diferencialos con 2do nombre o apellido.");
+        return;
+    }
+
     amigo.push(nombreAmigo);
-    inputAmigo.value= "";
+    inputAmigo.value = "";
     inputAmigo.focus();
     mostrarAmigos();
-
-};
+}
 
 function mostrarAmigos() {
     let listaAmigos = document.getElementById("listaAmigos");
     listaAmigos.innerHTML = "";
 
-    for (let i = 0; i < amigo.length; i++){
+    amigo.forEach(nombre => {
         let item = document.createElement("li");
-        item.textContent = amigo[i];
+        item.textContent = nombre;
         listaAmigos.appendChild(item);
-    }
+    });
 }
 
-function sortearAmigo(){
-    if (amigo.lenght = 0){
+function sortearAmigo() {
+    if (amigo.length === 0) {
         alert("Debes ingresar al menos un amigo");
         return;
     }
-let amigoSorteado = amigo[Math.floor(Math.random() * amigo.length)];
-let resultado = document.getElementById("resultado");
-resultado.innerHTML = `El amigo sorteado es: ${amigoSorteado}`;
 
-let limpiarLista= document.getElementById("listaAmigos");
-limpiarLista.innerHTML = "";
+    let amigoSorteado = amigo[Math.floor(Math.random() * amigo.length)];
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = `<p>El amigo sorteado es: <strong>${amigoSorteado}</strong></p>`;
+
+    document.getElementById("listaAmigos").innerHTML = "";
+    amigo = []; // Reiniciar la lista después del sorteo
 }
